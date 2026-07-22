@@ -9,6 +9,12 @@ This repository contains labels, splits, shot timing, subtitles, and two end-to-
 | [`notebooks/test_keyframes.ipynb`](notebooks/test_keyframes.ipynb) | Clustering baselines with subtitle (MiniLM), visual (CLIP), and multimodal embeddings |
 | [`notebooks/test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb) | BaSSL-inspired SSL pretraining + boundary-head finetuning on frozen CLIP features |
 
+## Demo
+
+Sample **predicted scene boundaries** from the BaSSL-inspired pipeline on a MovieNet-318 clip. Each segment shows keyframes grouped by the model’s predicted scene cuts (see the visualization cells in [`test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb)):
+
+<video src="docs/assets/prediction.mp4" controls playsinline width="100%"></video>
+
 ## Quick start
 
 ### 1. Clone the repository
@@ -60,6 +66,9 @@ movienet-scene-segmentation/
 │   ├── subtitle/              # SRT files for 314/318 movies
 │   ├── keyframes_240p.zip     # NOT in git — downloaded from Hugging Face
 │   └── keyframes_240p/        # NOT in git — extracted keyframes
+├── docs/
+│   ├── assets/                # demo media (e.g. BaSSL prediction video)
+│   └── download_keyframes.md
 ├── notebooks/
 ├── scripts/
 ├── outputs/                   # NOT in git — embeddings, checkpoints, results
