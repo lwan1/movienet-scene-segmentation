@@ -13,7 +13,13 @@ This repository contains labels, splits, shot timing, subtitles, and two end-to-
 
 Sample **predicted scene boundaries** from the BaSSL-inspired pipeline on a MovieNet-318 clip. Each segment shows keyframes grouped by the model’s predicted scene cuts (see the visualization cells in [`test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb)):
 
-<video src="docs/assets/prediction.mp4" controls playsinline width="100%"></video>
+<p align="center">
+  <a href="https://github.com/lwan1/movienet-scene-segmentation/blob/main/docs/assets/prediction.mp4">
+    <img src="docs/assets/prediction.gif" alt="BaSSL scene boundary prediction demo — click to play the full MP4" width="640">
+  </a>
+</p>
+
+<p align="center"><em>Click the preview to open the full MP4 in GitHub’s built-in player.</em></p>
 
 ## Quick start
 
@@ -67,7 +73,7 @@ movienet-scene-segmentation/
 │   ├── keyframes_240p.zip     # NOT in git — downloaded from Hugging Face
 │   └── keyframes_240p/        # NOT in git — extracted keyframes
 ├── docs/
-│   ├── assets/                # demo media (e.g. BaSSL prediction video)
+│   ├── assets/                # demo media (prediction.gif / prediction.mp4)
 │   └── download_keyframes.md
 ├── notebooks/
 ├── scripts/
