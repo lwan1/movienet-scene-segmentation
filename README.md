@@ -106,10 +106,12 @@ If you use this code or the MovieNet-318 benchmark, please cite:
 }
 
 @inproceedings{mun2022bassl,
-  title={Boundary-aware Self-supervised Learning for Video Scene Segmentation},
-  author={Mun, Seongho and Cho, Sunghyun and Han, Bohyung},
+  title={BaSSL: Boundary-aware Self-Supervised Learning for Video Scene Segmentation},
+  author={Mun, Jonghwan and Shin, Minchul and Han, Gunsoo and Lee, Sangho and Ha, Seongsu and Lee, Joonseok and Kim, Eun-Sol},
   booktitle={Proceedings of the Asian Conference on Computer Vision (ACCV)},
-  year={2022}
+  pages={4027--4043},
+  year={2022},
+  url={https://arxiv.org/abs/2201.05277}
 }
 ```
 
