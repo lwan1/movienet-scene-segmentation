@@ -14,7 +14,7 @@ This repository contains labels, splits, shot timing, subtitles, and two end-to-
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/movienet-scene-segmentation.git
+git clone https://github.com/lwan1/movienet-scene-segmentation.git
 cd movienet-scene-segmentation
 pip install -r requirements.txt
 ```
@@ -113,14 +113,9 @@ If you use this code or the MovieNet-318 benchmark, please cite:
 }
 ```
 
-## Publishing checklist
+## Run in Colab
 
-Before pushing to GitHub:
+[![Open In Colab — Clustering baselines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_keyframes.ipynb)
+[![Open In Colab — BaSSL pipeline](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl.ipynb)
 
-1. Replace `YOUR_USERNAME` in this README and in the notebook `REPO_URL` default.
-2. Confirm `data/keyframes_240p/` and `*.zip` are gitignored (they are by default).
-3. Optional: add a Colab badge linking to `notebooks/test_keyframes.ipynb` on GitHub.
-
-```markdown
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/movienet-scene-segmentation/blob/main/notebooks/test_keyframes.ipynb)
-```
+Enable a **GPU runtime** before running. Keyframes (~50 GB) are downloaded from Hugging Face on first run.
