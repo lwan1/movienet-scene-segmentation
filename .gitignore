@@ -1,0 +1,23 @@
+# Large / generated assets (obtain keyframes separately — see README)
+data/keyframes_240p/
+data/*.zip
+*.zip
+
+# Notebook outputs
+embeddings/
+results/
+checkpoints/
+eda/
+__pycache__/
+*.npz
+*.pt
+*.pth
+
+# Manifests (not needed to run notebooks)
+**/manifest*.csv
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
