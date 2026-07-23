@@ -1,15 +1,15 @@
-# MovieNet-318 Scene Segmentation
+# Scene Segmentation
 
-Reproducible notebooks for **movie scene boundary detection** on the [MovieNet-318](https://movienet.github.io/projects/cvpr20sceneseg.html) benchmark (190 train / 64 val / 64 test movies).
+Reproducible notebooks for **movie scene boundary detection** on the [MovieNet-318](https://movienet.github.io/projects/cvpr20sceneseg.html) benchmark (190 train / 64 val / 64 test movies) and BBC Dataset (11 test movies).
 
-This repository contains labels, splits, shot timing, subtitles, and two end-to-end pipelines:
+This repository contains labels, splits, shot timing, subtitles, and end-to-end pipelines:
 
 | Notebook | Description |
 |----------|-------------|
+| [`notebooks/unsupervised_approaches.ipynb`](notebooks/unsupervised_approaches.ipynb) | Comparsion of Adjacent Only w/ Priors on BBC |
 | [`notebooks/test_keyframes.ipynb`](notebooks/test_keyframes.ipynb) | Clustering baselines with subtitle (MiniLM), visual (CLIP), and multimodal embeddings |
 | [`notebooks/test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb) | BaSSL-inspired SSL pretraining + boundary-head finetuning on frozen CLIP features |
 | [`notebooks/test_scene_seg_bassl_inference.ipynb`](notebooks/test_scene_seg_bassl_inference.ipynb) | **Inference only** — load shipped checkpoint + HF embeddings (~3 GB); skips keyframes & training |
-| [`notebooks/unsupervised_approaches.ipynb`](notebooks/unsupervised_approaches.ipynb) | Comparsion of Adjacent Only w/ Priors on BBC |
 
 ## Demo
 
