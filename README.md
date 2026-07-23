@@ -8,11 +8,11 @@ This repository contains labels, splits, shot timing, subtitles, and two end-to-
 |----------|-------------|
 | [`notebooks/test_keyframes.ipynb`](notebooks/test_keyframes.ipynb) | Clustering baselines with subtitle (MiniLM), visual (CLIP), and multimodal embeddings |
 | [`notebooks/test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb) | BaSSL-inspired SSL pretraining + boundary-head finetuning on frozen CLIP features |
+| [`notebooks/unsupervised_approaches.ipynb`](notebooks/unsupervised_approaches.ipynb) | Comparsion of Adjacent Only w/ Priors on BBC |
 
 ## Demo
 
 Sample **predicted scene boundaries** from the BaSSL-inspired pipeline on a MovieNet-318 clip. Each segment shows keyframes grouped by the model’s predicted scene cuts (see the visualization cells in [`test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb)). Example:
-
 
 
 https://github.com/user-attachments/assets/3c5a533b-3e0a-4f62-b913-41ae00074a88
