@@ -30,6 +30,7 @@ Enable a **GPU runtime** before running. Preferrably a G4 but suitable with a T4
 - **`test_keyframes.ipynb`** — Clustering baselines with subtitle (MiniLM), visual (CLIP), and multimodal embeddings [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_keyframes.ipynb)
 - **`test_scene_seg_bassl.ipynb`** — BaSSL-inspired SSL pretraining + boundary-head finetuning on frozen CLIP features [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl.ipynb)
 - **`test_scene_seg_bassl_inference.ipynb`** — Inference only: load shipped checkpoint + HF embeddings (~3 GB); skips keyframes & training [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl_inference.ipynb)
+- **`Test_Scene_Detector_Windowed_Threshold_Clustering_v5`**  — Using CLIP, CLAP and Whisper, combined with a window threshold algorithm and agglomerative clustering to group scenes [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1HG0GFh_K_cvY_uW17FdBEOrXw6yF2re1?authuser=2#scrollTo=7c098b8e)
 
 
 ## Data license & usage
