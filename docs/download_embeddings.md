@@ -35,7 +35,9 @@ python scripts/download_embeddings_hf.py
 python scripts/download_embeddings_hf.py --movie-ids tt0047396 --modalities visual subtitle multimodal
 ```
 
-Equivalent `hf` command:
+Uses the `huggingface_hub` Python API with parallel downloads and a tqdm progress bar (reliable in Colab; avoids hung `hf` CLI subprocesses).
+
+Optional equivalent:
 
 ```bash
 hf download asmith06/scene-segmentation-embeddings \
