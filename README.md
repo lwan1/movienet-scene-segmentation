@@ -157,6 +157,7 @@ If you use this code or the MovieNet-318 benchmark, please cite:
 
 ## Run in Colab
 
+[![Open In Colab — Unsupervised approaches](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/unsupervised_approaches.ipynb)
 [![Open In Colab — Clustering baselines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_keyframes.ipynb)
 [![Open In Colab — BaSSL pipeline](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl.ipynb)
 [![Open In Colab — BaSSL inference](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl_inference.ipynb)
