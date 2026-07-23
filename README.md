@@ -10,6 +10,7 @@ This repository contains labels, splits, shot timing, subtitles, and end-to-end 
 | [`notebooks/test_keyframes.ipynb`](notebooks/test_keyframes.ipynb) | Clustering baselines with subtitle (MiniLM), visual (CLIP), and multimodal embeddings |
 | [`notebooks/test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb) | BaSSL-inspired SSL pretraining + boundary-head finetuning on frozen CLIP features |
 | [`notebooks/test_scene_seg_bassl_inference.ipynb`](notebooks/test_scene_seg_bassl_inference.ipynb) | **Inference only** — load shipped checkpoint + HF embeddings (~3 GB); skips keyframes & training |
+| [`notebooks/Test_Scene_Detector_Windowed_Threshold_Clustering_v5`](notebooks/Test_Scene_Detector_Windowed_Threshold_Clustering_v5.ipynb) | Using CLIP, CLAP and Whisper, combined with a window threshold algorithm and agglomerative clustering to group scenes |
 
 ## Demo
 
