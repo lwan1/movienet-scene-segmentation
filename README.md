@@ -24,10 +24,10 @@ https://github.com/user-attachments/assets/3c5a533b-3e0a-4f62-b913-41ae00074a88
 
 ## Run in Colab
 
-[![Open In Colab — Unsupervised approaches](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/unsupervised_approaches.ipynb)
-[![Open In Colab — Clustering baselines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_keyframes.ipynb)
-[![Open In Colab — BaSSL pipeline](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl.ipynb)
-[![Open In Colab — BaSSL inference](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl_inference.ipynb)
+- **`unsupervised_approaches.ipynb`** — Comparison of Adjacent Only w/ Priors on BBC [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/unsupervised_approaches.ipynb)
+- **`test_keyframes.ipynb`** — Clustering baselines with subtitle (MiniLM), visual (CLIP), and multimodal embeddings [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_keyframes.ipynb)
+- **`test_scene_seg_bassl.ipynb`** — BaSSL-inspired SSL pretraining + boundary-head finetuning on frozen CLIP features [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl.ipynb)
+- **`test_scene_seg_bassl_inference.ipynb`** — Inference only: load shipped checkpoint + HF embeddings (~3 GB); skips keyframes & training [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl_inference.ipynb)
 
 Enable a **GPU runtime** before running. By default, notebooks download precomputed embeddings (~3 GB) and skip the 50 GB keyframe archive — suitable for Colab T4.
 
