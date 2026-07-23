@@ -4,7 +4,7 @@ The 318-movie 240p keyframe subset (~50 GB zipped, ~50 GB extracted) is hosted o
 
 **[asmith06/movienet318-keyframes-240p](https://huggingface.co/datasets/asmith06/movienet318-keyframes-240p)**
 
-Both notebooks download and extract this archive automatically when you run the **Download & extract keyframes** cell.
+Both notebooks download keyframes **only when** `DOWNLOAD_KEYFRAMES = True`. The default T4-friendly path uses precomputed embeddings instead — see [`download_embeddings.md`](download_embeddings.md).
 
 ## Automatic (notebooks)
 
@@ -50,7 +50,9 @@ python scripts/extract_keyframes318.py \
 ## Storage tips (Colab / limited disk)
 
 - Colab free tier has ~100 GB disk — enough for the 50 GB zip plus extraction if you delete the zip after extracting.
-- For a quick smoke test, set `LIMIT_MOVIES = 10` or `LIMIT_PER_SPLIT = 3` in the notebook before embedding/training cells.
+- For a quick smoke test, set `LIMIT_MOVIES = 10` or `LIMIT_PER_SPLIT = 3` in the notebook **before** the asset download cell.
+- Keyframe extraction uses `scripts/setup_keyframes.py` (streaming, one file at a time) — not `ZipFile.extractall()`.
+- To extract only movies in your current subset: keep `KEYFRAME_SUBSET_ONLY = True` (default).
 
 ## License
 

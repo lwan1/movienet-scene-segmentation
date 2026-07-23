@@ -1,16 +1,27 @@
 # Large / generated assets (obtain keyframes separately — see README)
 data/keyframes_240p/
+data/embeddings/
 data/*.zip
 *.zip
 
-# Notebook outputs
+# Notebook outputs (regenerated locally)
+outputs/
 embeddings/
 results/
-checkpoints/
 eda/
 __pycache__/
 *.npz
+
+# Checkpoints — ship finetuned inference weights only
+checkpoints/**
+!checkpoints/bassl/
+checkpoints/bassl/**
+!checkpoints/bassl/bassl_finetuned.pt
+!checkpoints/bassl/inference_config.json
+
+# Other weight files outside the shipped checkpoint
 *.pt
+!checkpoints/bassl/bassl_finetuned.pt
 *.pth
 
 # Manifests (not needed to run notebooks)

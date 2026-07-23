@@ -29,15 +29,16 @@ def extract_keyframes_subset(
     split_path: Path,
     out_dir: Path,
     *,
-    zip_prefix: str = "frames/",
+    zip_prefix: str = "keyframes_240p/",
+    movie_ids: list[str] | None = None,
     write_manifest: bool = True,
 ) -> tuple[int, list[str]]:
-    """Extract keyframes for all movies in split318.
+    """Extract keyframes for movies in split318 (or a subset).
 
     Returns (folder_count, missing_movie_ids).
     """
     out_dir.mkdir(parents=True, exist_ok=True)
-    movie_ids = load_movie_ids(split_path)
+    movie_ids = list(movie_ids) if movie_ids is not None else load_movie_ids(split_path)
     movie_id_set = set(movie_ids)
 
     if len(movie_ids) != len(movie_id_set):
@@ -48,12 +49,16 @@ def extract_keyframes_subset(
     print(f"Indexing archive entries in {zip_path} ...")
     with zipfile.ZipFile(zip_path) as zf:
         for name in zf.namelist():
-            if not name.startswith(zip_prefix) or name.endswith("/"):
+            if name.endswith("/"):
+                continue
+            if zip_prefix and not name.startswith(zip_prefix):
                 continue
             parts = name.split("/")
-            if len(parts) < 3:
+            if len(parts) < 2:
                 continue
-            movie_id = parts[1]
+            movie_id = parts[1] if zip_prefix else parts[0]
+            if not movie_id.startswith("tt"):
+                continue
             if movie_id not in movie_id_set:
                 continue
             paths_by_movie[movie_id].append(name)
@@ -136,8 +141,14 @@ def main() -> None:
     parser.add_argument(
         "--zip-prefix",
         type=str,
-        default="frames/",
-        help="Top-level folder prefix inside the zip archive",
+        default="keyframes_240p/",
+        help="Top-level folder prefix inside the zip archive (empty string if ttXXXX/ is at root)",
+    )
+    parser.add_argument(
+        "--movie-ids",
+        nargs="+",
+        default=None,
+        help="Extract only these movie IDs (smoke tests). Default: all movies in split318.json",
     )
     args = parser.parse_args()
 
@@ -147,13 +158,14 @@ def main() -> None:
         split_path=split_path,
         out_dir=args.out_dir,
         zip_prefix=args.zip_prefix,
+        movie_ids=args.movie_ids,
     )
 
     folder_count = len([p for p in args.out_dir.iterdir() if p.is_dir() and p.name.startswith("tt")])
     print(f"Extracted {extracted} movie folders ({folder_count} tt* dirs under {args.out_dir.resolve()})")
     if missing:
-        print(f"Missing {len(missing)} movies: {missing}")
-    if folder_count != 318:
+        print(f"Missing {len(missing)} movies: {missing[:10]}{'...' if len(missing) > 10 else ''}")
+    if args.movie_ids is None and folder_count != 318:
         raise SystemExit(f"Expected 318 movie folders, found {folder_count}.")
 
 

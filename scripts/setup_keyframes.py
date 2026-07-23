@@ -26,8 +26,14 @@ def main() -> None:
     parser.add_argument(
         "--zip-prefix",
         type=str,
-        default="",
-        help="Top-level folder inside zip before ttXXXX/ (e.g. 'frames/' for full MovieNet)",
+        default="keyframes_240p/",
+        help="Top-level folder inside zip before ttXXXX/ (use '' if ttXXXX/ is at zip root)",
+    )
+    parser.add_argument(
+        "--movie-ids",
+        nargs="+",
+        default=None,
+        help="Extract only these movie IDs (T4 smoke tests)",
     )
     args = parser.parse_args()
 
@@ -44,6 +50,7 @@ def main() -> None:
         split_path=split_path,
         out_dir=args.out_dir,
         zip_prefix=args.zip_prefix,
+        movie_ids=args.movie_ids,
         write_manifest=False,
     )
     folder_count = len([p for p in args.out_dir.iterdir() if p.is_dir() and p.name.startswith("tt")])

@@ -1,0 +1,13 @@
+{
+  "checkpoint_file": "bassl_finetuned.pt",
+  "clip_model_id": "openai/clip-vit-base-patch32",
+  "clip_dim": 512,
+  "max_seq_len": 128,
+  "d_model": 256,
+  "n_head": 4,
+  "n_layers": 3,
+  "dropout": 0.1,
+  "label_policy": "lgss",
+  "hf_embeddings_repo": "asmith06/scene-segmentation-embeddings",
+  "notes": "Finetuned boundary head from notebooks/test_scene_seg_bassl.ipynb. Precomputed embeddings: https://huggingface.co/datasets/asmith06/scene-segmentation-embeddings"
+}

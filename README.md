@@ -8,6 +8,7 @@ This repository contains labels, splits, shot timing, subtitles, and two end-to-
 |----------|-------------|
 | [`notebooks/test_keyframes.ipynb`](notebooks/test_keyframes.ipynb) | Clustering baselines with subtitle (MiniLM), visual (CLIP), and multimodal embeddings |
 | [`notebooks/test_scene_seg_bassl.ipynb`](notebooks/test_scene_seg_bassl.ipynb) | BaSSL-inspired SSL pretraining + boundary-head finetuning on frozen CLIP features |
+| [`notebooks/test_scene_seg_bassl_inference.ipynb`](notebooks/test_scene_seg_bassl_inference.ipynb) | **Inference only** — load shipped checkpoint + HF embeddings (~3 GB); skips keyframes & training |
 | [`notebooks/unsupervised_approaches.ipynb`](notebooks/unsupervised_approaches.ipynb) | Comparsion of Adjacent Only w/ Priors on BBC |
 
 ## Demo
@@ -31,21 +32,36 @@ cd movienet-scene-segmentation
 pip install -r requirements.txt
 ```
 
-### 2. Run a notebook (keyframes download automatically)
+### 2. Run a notebook
 
-**Google Colab:** open either notebook, set `REPO_URL` in the setup cell to your fork, enable a GPU runtime, and run all cells. Keyframes are downloaded from Hugging Face on first run (~50 GB).
+**Google Colab (T4-friendly):** open a notebook, set `REPO_URL` in the setup cell to your fork, enable a GPU runtime, and run all cells. By default, notebooks download **precomputed embeddings** (~3 GB) from [asmith06/scene-segmentation-embeddings](https://huggingface.co/datasets/asmith06/scene-segmentation-embeddings) and **skip** the 50 GB keyframe archive.
+
+| Goal | Notebook | Default toggles |
+|------|----------|-----------------|
+| Fast eval | `test_scene_seg_bassl_inference.ipynb` | `DOWNLOAD_EMBEDDINGS=True`, `DOWNLOAD_KEYFRAMES=False` |
+| Clustering baselines | `test_keyframes.ipynb` | same |
+| Full BaSSL training | `test_scene_seg_bassl.ipynb` | same (uses cached CLIP features) |
 
 **Local Jupyter:**
 
 ```bash
-jupyter notebook notebooks/test_keyframes.ipynb
+jupyter notebook notebooks/test_scene_seg_bassl_inference.ipynb
 ```
 
 Set `SCENE_SEG_REPO_DIR` to the repo root if the auto-detection cell does not find `data/scene318/`.
 
-The notebooks download keyframes from **[asmith06/movienet318-keyframes-240p](https://huggingface.co/datasets/asmith06/movienet318-keyframes-240p)** and extract them to `data/keyframes_240p/`.
+### Download precomputed embeddings (recommended)
 
-### Manual keyframe download (optional)
+```bash
+export HF_XET_HIGH_PERFORMANCE=1
+python scripts/download_embeddings_hf.py
+```
+
+See [`docs/download_embeddings.md`](docs/download_embeddings.md). Layout mirrors `data/embeddings/` (`visual/`, `subtitle/`, `multimodal/`).
+
+### Optional: keyframes (50 GB)
+
+Only needed if you want to **re-encode CLIP from scratch** or run visualization cells. Set `DOWNLOAD_KEYFRAMES = True` in the notebook, or download manually:
 
 ```bash
 export HF_XET_HIGH_PERFORMANCE=1
@@ -56,9 +72,11 @@ python scripts/setup_keyframes.py
 
 See [`docs/download_keyframes.md`](docs/download_keyframes.md) for details and alternatives.
 
+**Inference-only path:** use [`notebooks/test_scene_seg_bassl_inference.ipynb`](notebooks/test_scene_seg_bassl_inference.ipynb) with the shipped checkpoint. See [`docs/download_embeddings.md`](docs/download_embeddings.md).
+
 ### Smoke test
 
-In either notebook, set `LIMIT_MOVIES = 10` or `LIMIT_PER_SPLIT = 3` before the expensive embedding/training cells.
+Set `LIMIT_MOVIES = 10` or `LIMIT_PER_SPLIT = 3` in the configuration cell, then re-run the asset download cell (after split is loaded) to fetch only a subset from Hugging Face.
 
 ## Repository layout
 
@@ -70,14 +88,20 @@ movienet-scene-segmentation/
 │   │   ├── meta/split318.json # official train/val/test split
 │   │   └── shot_movie318/     # shot frame ranges for subtitle alignment
 │   ├── subtitle/              # SRT files for 314/318 movies
-│   ├── keyframes_240p.zip     # NOT in git — downloaded from Hugging Face
-│   └── keyframes_240p/        # NOT in git — extracted keyframes
+│   ├── keyframes_240p.zip     # NOT in git — optional, ~50 GB from Hugging Face
+│   ├── keyframes_240p/        # NOT in git — optional extracted keyframes
+│   └── embeddings/            # NOT in git — precomputed from Hugging Face (~3 GB)
 ├── docs/
 │   ├── assets/                # demo media (prediction.gif / prediction.mp4)
+│   ├── download_embeddings.md
 │   └── download_keyframes.md
 ├── notebooks/
+├── checkpoints/
+│   └── bassl/                 # shipped finetuned weights (~11 MB)
+│       ├── bassl_finetuned.pt
+│       └── inference_config.json
 ├── scripts/
-├── outputs/                   # NOT in git — embeddings, checkpoints, results
+├── outputs/                   # NOT in git — regenerated results
 └── requirements.txt
 ```
 
@@ -97,6 +121,7 @@ This project builds on open research and tooling from:
 - **CLIP** — visual embeddings ([Radford et al., ICML 2021](https://arxiv.org/abs/2103.00020))
 - **Sentence-Transformers** — subtitle text embeddings ([Reimers & Gurevych, EMNLP 2019](https://arxiv.org/abs/1908.10084))
 - **MovieNet-318 keyframes on Hugging Face** — [asmith06/movienet318-keyframes-240p](https://huggingface.co/datasets/asmith06/movienet318-keyframes-240p)
+- **MovieNet-318 precomputed embeddings** — [asmith06/scene-segmentation-embeddings](https://huggingface.co/datasets/asmith06/scene-segmentation-embeddings)
 
 Published reference numbers in the notebooks (TranS4mer, MEGA, Scene-VLM) are taken from recent literature surveys on MovieNet-318; see those papers for their experimental settings.
 
@@ -134,5 +159,6 @@ If you use this code or the MovieNet-318 benchmark, please cite:
 
 [![Open In Colab — Clustering baselines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_keyframes.ipynb)
 [![Open In Colab — BaSSL pipeline](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl.ipynb)
+[![Open In Colab — BaSSL inference](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lwan1/movienet-scene-segmentation/blob/main/notebooks/test_scene_seg_bassl_inference.ipynb)
 
-Enable a **GPU runtime** before running. Keyframes (~50 GB) are downloaded from Hugging Face on first run.
+Enable a **GPU runtime** before running. By default, notebooks download precomputed embeddings (~3 GB) and skip the 50 GB keyframe archive — suitable for Colab T4.
