@@ -2,7 +2,7 @@
 
 Reproducible notebooks for **movie scene boundary detection** on the [MovieNet-318](https://movienet.github.io/projects/cvpr20sceneseg.html) benchmark (190 train / 64 val / 64 test movies) and BBC Dataset (11 test movies).
 
-This repository contains labels, splits, shot timing, subtitles, and end-to-end pipelines:
+This repository contains various approaches to pipelines that solve the problem of scene segmentation and evaluate those approaches on tolerant based F1 and average precision metrics.
 
 | Notebook | Description |
 |----------|-------------|
